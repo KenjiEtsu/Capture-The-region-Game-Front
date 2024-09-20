@@ -1,10 +1,38 @@
 import {StyleSheet, Text, View, Pressable, PermissionsAndroid, Platform, TextInput, Keyboard} from 'react-native';
-import {ChallengeIcon} from "./icons";
-import React, {useState} from "react";
+import {ChallengeIcon} from "../global/icons";
+import React, {useEffect, useState} from "react";
+import asyncStorage from "@react-native-async-storage/async-storage/src/AsyncStorage";
 
 
 export default function Viajar() {
     const [coins, setCoins] = useState(0);
+    const [maxCoins, setMaxCoins] = useState(0);
+    const [ip, setIP] = useState("kenjietsu.com");
+    const [playerValue, setPlayerValue] = useState("angeles");
+
+    useEffect(() => {
+        (async () => {
+
+            asyncStorage.getItem('coins').then((value) => {
+                if (value !== null) {
+                    setMaxCoins(value);
+                }
+            });
+
+            asyncStorage.getItem('ip').then((value) => {
+                if (value !== null) {
+                    setIP(value);
+                }
+
+            });
+            asyncStorage.getItem('user').then((value) => {
+                if (value !== null) {
+                    setPlayerValue(value);
+                }
+
+            });
+        })();
+        }, []);
     return (
 
         <View>
@@ -18,8 +46,8 @@ export default function Viajar() {
                     placeholder={"Minutos"}
                     autoFocus={true}
                     onChangeText={(text) =>{
-                        if (text > 600) {
-                            setCoins(600);
+                        if (text*15 > maxCoins) {
+                            setCoins(Math.floor(maxCoins/15));
                         } else {
                             setCoins(text);
                         }}}
@@ -37,6 +65,28 @@ export default function Viajar() {
                 onPress={() => {
                     Keyboard.dismiss();
                     setCoins(0);
+
+                    // PUT https://kenjietsu.com/api/coins/angeles?coins=10
+
+                    fetch(`https://${ip}:443/api/coins/${playerValue}?coins=${-coins*15}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            coins: coins,
+                        }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            asyncStorage.setItem('coins', maxCoins - coins);
+                            setMaxCoins(-coins*15);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+
+
                 }}
                 style={({pressed}) => [
                     {

@@ -1,8 +1,8 @@
 import {Slot, Tabs} from "expo-router";
 import {StatusBar, StyleSheet, Text, View} from "react-native";
 import {SafeAreaProvider} from "react-native-safe-area-context";
-import {ChallengeIcon, ConfigIcon, MapIcon, WalletIcon} from "../../components/icons";
-import walletCoins from "../../components/walletCoins";
+import {ChallengeIcon, ConfigIcon, MapIcon, WalletIcon} from "../../components/global/icons";
+import walletCoins from "../../components/global/walletCoins";
 
 
 export default function TabsLayout() {

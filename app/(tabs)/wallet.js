@@ -5,8 +5,8 @@ import {
     Platform,
     TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView
 } from 'react-native';
-import Viajar from "../../components/viajar";
-import Reclamar from "../../components/reclamar";
+import Viajar from "../../components/wallet/viajar";
+import Reclamar from "../../components/wallet/reclamar";
 
 
 export default function Wallet() {
