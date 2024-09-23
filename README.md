@@ -2,6 +2,7 @@
 # Capture The region Game
 
 Small geography game application created using Expo React-native to play with a small group of friends.
+See [Backend](Capture-The-region-Game-BACK)
 ## License
 
 [MIT License](https://choosealicense.com/licenses/mit/)
