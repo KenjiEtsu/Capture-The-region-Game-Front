@@ -79,7 +79,7 @@ export default function Viajar() {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            asyncStorage.setItem('coins', maxCoins - coins);
+                            asyncStorage.setItem('coins', (maxCoins - coins).toString());
                             setMaxCoins(-coins*15);
                         })
                         .catch((error) => {

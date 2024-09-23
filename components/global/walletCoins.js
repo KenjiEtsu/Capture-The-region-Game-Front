@@ -25,7 +25,6 @@ export default function walletCoins() {
 
             const response = await fetch(`https://${storedIP || ip}:443/api/player/${storedUser || playerValue}`);
             const data = await response.json();
-            console.log(data);
             setSelectedValue(data['coins']);
             await AsyncStorage.setItem('coins', data['coins'].toString());
         })();

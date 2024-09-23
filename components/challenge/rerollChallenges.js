@@ -7,77 +7,78 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getLocation} from "../wallet/reclamar";
 
 
 
 
-export default function DebugAddCoins() {
+export default function RerollChallenges() {
 
     const [selectedValue, setSelectedValue] = useState("");
     const [ip, setIp] = useState("kenjietsu.com");
     const [playerValue, setPlayerValue] = useState("angeles");
 
     useEffect(() => {
-        (async () => {
-            AsyncStorage.getItem('ip').then((value) => {
-                if (value !== null) {
-                    setIp(value);
+        const fetchData = async () => {
+            try {
+
+                const ipValue = await AsyncStorage.getItem('ip');
+                if (ipValue !== null) {
+                    setIp(ipValue);
                 }
-            });
-            AsyncStorage.getItem('user').then((value) => {
-                if (value !== null) {
-                    setPlayerValue(value);
+
+                const userValue = await AsyncStorage.getItem('user');
+                if (userValue !== null) {
+                    setPlayerValue(userValue);
                 }
-            });
-        })();
-    }, []);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, [ip]);
 
     return (
         <View >
-            <TextInput
-                style={{ height: 40, color: 'white' }}
-                placeholder="Coins"
-                placeholderTextColor={"#fff"}
-                onChangeText={text => {
-                    setSelectedValue(text);
-                }}
-                value={selectedValue}
-
-            />
             <Pressable
                 onPress={() => {
                     Keyboard.dismiss();
-                    // PUT https://kenjietsu.com/api/coins/angeles?coins=10
-
-                    fetch(`https://${ip}:443/api/coins/${playerValue}?coins=${selectedValue}`, {
+                    // PUT https://kenjietsu.com/api/init/challenges
+                    fetch(`https://${ip}:443/api/init/challenges`, {
                         method: 'PUT',
                         headers: {
                             Accept: 'application/json',
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            coins: selectedValue
+                            challenges: selectedValue
                         })
                     })
                         .then(response => response.json())
                         .then(data => {
                             console.log(data);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
                         });
+
 
 
                 }}
                 style={({pressed}) => [
                     {
                         backgroundColor: pressed
-                            ? 'rgb(0,102,225)'
-                            : 'rgb(31 41 55)',
+                            ? 'rgb(255,0,0)'
+                            : 'rgb(108,1,1)',
                         padding: 12,
                         borderRadius : 8,
                         marginTop: 8
                     },
                 ]}>
 
-                <Text className={"text-white"}>Confirmar</Text>
+                <Text className={"text-white"}>RECARGAR RETOS, SOLO CADA 2 HORAS </Text>
             </Pressable>
         </View>
     );

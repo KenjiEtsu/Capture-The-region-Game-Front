@@ -8,7 +8,7 @@ export default function Layout() {
     return (
 
 
-            <View style={styles.container}>
+
 
 
                 <Stack
@@ -23,13 +23,13 @@ export default function Layout() {
                 }
                 />
 
-            </View>
+
 
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
     }
 });

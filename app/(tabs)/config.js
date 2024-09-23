@@ -15,6 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import UserSelect from "../../components/config/userSelect";
 import IPenter from "../../components/config/IPenter";
 import DebugAddCoins from "../../components/config/debugAddCoins";
+import InitPlayers from "../../components/config/initPlayers";
 
 
 export default function Config() {
@@ -41,6 +42,10 @@ export default function Config() {
                         <View style={styles.debugFieldSet} >
                             <Text style={styles.debugLegend}>DebugMonedas</Text>
                             <DebugAddCoins/>
+                        </View>
+                        <View style={styles.debugFieldSet} >
+                            <Text style={styles.debugLegend}>INICIARJUGADORES</Text>
+                            <InitPlayers/>
                         </View>
                     </View>
             </TouchableWithoutFeedback>

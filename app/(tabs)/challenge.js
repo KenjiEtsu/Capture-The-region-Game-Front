@@ -4,24 +4,35 @@ import {
     View,
     Platform,
     StatusBar,
-    TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView
+    TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, ScrollView, FlatList
 } from 'react-native';
 import React from "react";
 import ChallenchCard from "../../components/challenge/challenchCard";
+import RerollChallenges from "../../components/challenge/rerollChallenges";
 
 export default function Challenge() {
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            className={""}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
-                <View style={styles.max} >
-                    <StatusBar style="light"/>
 
-                    <ChallenchCard></ChallenchCard>
+
+
+            <View style={styles.max}>
+            <ScrollView  className={""}
+            style={styles.max}
+            contentContainerStyle={{
+                flex: 0
+            }}
+            keyboardDismissMode={"on-drag"}
+            >
+                <StatusBar style="light"/>
+                <ChallenchCard challenge={0}/>
+                <ChallenchCard challenge={1}/>
+                <ChallenchCard challenge={2}/>
+                <ChallenchCard challenge={3}/>
+                <RerollChallenges/>
+            </ScrollView>
                 </View>
-            </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+
+
     );
 }
 

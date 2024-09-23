@@ -7,7 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function IPenter() {
 
-    const [selectedValue, setSelectedValue] = useState("127.0.0.1");
+    const [selectedValue, setSelectedValue] = useState("kenjietsu.com");
 
     useEffect(() => {
         AsyncStorage.getItem('ip').then((value) => {

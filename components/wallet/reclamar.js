@@ -74,11 +74,7 @@ export default function Reclamar() {
                 placeholder={"Coins"}
                 autoFocus={true}
                 onChangeText={(text) =>{
-                    if (text*15 > maxCoins) {
-                        setCoins(Math.floor(maxCoins));
-                    } else {
-                        setCoins(text);
-                    }}}
+                    setCoins(text);}}
                 value={coins.toString() === '0' ? "" : coins.toString()}
 
             />
@@ -101,7 +97,7 @@ export default function Reclamar() {
                         .then((response) => response.json())
                         .then((json) => {
                             console.log(json);
-                            asyncStorage.setItem('coins', maxCoins - coins);
+                            asyncStorage.setItem('coins', (maxCoins - coins).toString());
                             setMaxCoins(maxCoins - coins);
                         })
                         .catch((error) => {
@@ -125,7 +121,7 @@ export default function Reclamar() {
         </View>
     );
 }
-async function getLocation() {
+export async function getLocation() {
     // create list
     const geojsonList = [anoia, llobregat, bages, barcelones, garraf, maresme, oriental, occidental, osona, penedes];
 
