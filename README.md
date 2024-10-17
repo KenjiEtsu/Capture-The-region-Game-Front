@@ -16,7 +16,8 @@ See [Backend](https://github.com/KenjiEtsu/Capture-The-region-Game-BACK)
 
 ## Screenshots
 
-![imagen](https://github.com/user-attachments/assets/c790a5b0-a9ca-4e12-af8a-e461ee158320 =250x250)
-![imagen](https://github.com/user-attachments/assets/cb24e72d-0bad-45db-a86c-49309e1ffe88 =250x250)
-![imagen](https://github.com/user-attachments/assets/95f38f49-c65f-4f4a-a252-4ce8c9fc04dd =250x250)
-![imagen](https://github.com/user-attachments/assets/d04ac33c-6866-44c9-aac1-9241e81cd3d2 =250x250)
+
+<img src="https://github.com/user-attachments/assets/c790a5b0-a9ca-4e12-af8a-e461ee158320" width="248">
+<img src="https://github.com/user-attachments/assets/cb24e72d-0bad-45db-a86c-49309e1ffe88" width="248">
+<img src="https://github.com/user-attachments/assets/95f38f49-c65f-4f4a-a252-4ce8c9fc04dd" width="248">
+<img src="https://github.com/user-attachments/assets/d04ac33c-6866-44c9-aac1-9241e81cd3d2" width="248">
